@@ -17,3 +17,4 @@ The app should be able to:
 - take each payment (Date, sum, no of rates, description)
 - store this data and read it from "database" when has to do the monthly report
 - list all transactions (products) with some details like: initial amount, rates, description, date, and current status of the transaction ( 4 of 6 rates returned) or completed in 6 rates at ...specify the date.
+- grafice
