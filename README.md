@@ -12,6 +12,8 @@ each buy more than 200Ron will be divided into monthly rates as follows:
      - transfer online from mobile bank
 
 ## App functionalities:
-    - the app should be able to take each payment (Date, sum, no of rates, description)
-    - the app should be able to store this data and read it from "database" when has to do the monthly report
-    - 
+    - the app should be able to 
+    -- take each payment (Date, sum, no of rates, description)
+    -- store this data and read it from "database" when has to do the monthly report
+    -- list all transactions (products) with some details like: initial amount, rates, description, date, and current status of the transaction ( 4 of 6 rates returned) or completed in 6 rates at ...specify the date.
+    
