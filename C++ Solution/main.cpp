@@ -26,7 +26,7 @@ int main() {
 	std::cout << std::endl;
 
 	double suma_platita;
-	std::cout << "Va rugam sa introduceti suma platita pe achizitie: ";
+	std::cout << "Va rugam sa introduceti suma platita pe achizitie: " << std::endl;
 	std::cin >> suma_platita;
 	std::cout << " Ron" << std::endl;
 	std::cout << std::endl;
