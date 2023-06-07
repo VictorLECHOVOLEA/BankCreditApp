@@ -14,7 +14,7 @@ int main() {
 	std::cout << std::endl;
 
 	if (login != nume_cont) {
-		std::cout << "Acest cont este invalid - va rugam incergati din nou" << std::endl;
+		std::cout << "Acest cont este invalid - va rugam incercati din nou" << std::endl;
 	} else {
 		std::cout << "Bun venit in aplicatia BankCreditApp" << std::endl;
 	}
@@ -32,7 +32,7 @@ int main() {
 	std::cout << std::endl;
 
 	std::cout << "Puteti alege ca suma sa fie platita in 1, 4, 6, 8, 10 sau 12 rate." << std::endl;
-	std::cout << "Va rugam sa alegeti numarul de rate convenavil pentru dumneavoastra" << std::endl;
+	std::cout << "Va rugam sa alegeti numarul de rate convenabil pentru dumneavoastra" << std::endl;
 
 	while (suma_platita < 200) {
 		std::cout << "Suma trebuie platita intr-o singura rata" << std::endl;
