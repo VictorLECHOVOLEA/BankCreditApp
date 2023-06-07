@@ -31,14 +31,14 @@ int main() {
 	std::cout << " Ron" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "Puteti alege ca suma sa fie platita in 1, 4, 6, 8, 10 sau 12 rate." << std::endl;
-	std::cout << "Va rugam sa alegeti numarul de rate convenabil pentru dumneavoastra" << std::endl;
-
 	while (suma_platita < 200) {
 		std::cout << "Suma trebuie platita intr-o singura rata" << std::endl;
 		break;
 	}
 	std::cout << std::endl;
+	
+	std::cout << "Puteti alege ca suma sa fie platita in 4, 6, 8, 10 sau 12 rate." << std::endl;
+	std::cout << "Va rugam sa alegeti numarul de rate convenabil pentru dumneavoastra" << std::endl;
 
 	int numar_rate;
 	std::cout << "Va rugam sa specificati numarul de rate dorit: " << std::endl;
