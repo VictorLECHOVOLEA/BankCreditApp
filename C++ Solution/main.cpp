@@ -26,56 +26,59 @@ int main() {
 	std::cout << std::endl;
 
 	double suma_platita;
-	std::cout << "Va rugam sa introduceti suma platita pe achizitie: RON" << std::endl;
+	std::cout << "Va rugam sa introduceti suma platita pe achizitie: RON ";
 	std::cin >> suma_platita;
 	std::cout << std::endl;
 
-	while (suma_platita < 200) {
+	if (suma_platita < 200) {
 		std::cout << "Suma trebuie platita intr-o singura rata" << std::endl;
-		break;
+	}
+	else {
+		std::cout << "Puteti alege ca suma sa fie platita in 4, 6, 8, 10 sau 12 rate." << std::endl;
+		std::cout << "Va rugam sa alegeti numarul de rate convenabil pentru dumneavoastra" << std::endl;
+
+		int numar_rate;
+		std::cout << "Va rugam sa specificati numarul de rate dorit: " << std::endl;
+		std::cin >> numar_rate;
+		std::cout << std::endl;
+
+		double suma_lunara_de_plata = 0;
+
+		switch (numar_rate) {
+		case 4:
+			suma_lunara_de_plata = suma_platita / numar_rate;
+			std::cout << suma_lunara_de_plata;
+			std::cout << std::endl;
+			break;
+		case 6:
+			suma_lunara_de_plata = suma_platita / numar_rate;
+			std::cout << suma_lunara_de_plata;
+			std::cout << std::endl;
+			break;
+		case 8:
+			suma_lunara_de_plata = suma_platita / numar_rate;
+			std::cout << suma_lunara_de_plata;
+			std::cout << std::endl;
+			break;
+		case 10:
+			suma_lunara_de_plata = suma_platita / numar_rate;
+			std::cout << suma_lunara_de_plata;
+			std::cout << std::endl;
+			break;
+		case 12:
+			suma_lunara_de_plata = suma_platita / numar_rate;
+			std::cout << suma_lunara_de_plata;
+			std::cout << std::endl;
+			break;
+		default:
+			std::cout << "Operatiune invalida - Va rugam incercati din nou" << std::endl;
+			std::cout << std::endl;
+			break;
+		}
+
 	}
 	std::cout << std::endl;
+
 	
-	std::cout << "Puteti alege ca suma sa fie platita in 4, 6, 8, 10 sau 12 rate." << std::endl;
-	std::cout << "Va rugam sa alegeti numarul de rate convenabil pentru dumneavoastra" << std::endl;
-
-	int numar_rate;
-	std::cout << "Va rugam sa specificati numarul de rate dorit: " << std::endl;
-	std::cin >> numar_rate;
-	std::cout << std::endl;
-
-	double suma_lunara_de_plata = 0;
-
-	switch (numar_rate) {
-	case 4:
-		suma_lunara_de_plata = suma_platita / numar_rate;
-		std::cout << suma_lunara_de_plata;
-		std::cout << std::endl;
-		break;
-	case 6:
-		suma_lunara_de_plata = suma_platita / numar_rate;
-		std::cout << suma_lunara_de_plata;
-		std::cout << std::endl;
-		break;
-	case 8:
-		suma_lunara_de_plata = suma_platita / numar_rate;
-		std::cout << suma_lunara_de_plata;
-		std::cout << std::endl;
-		break;
-	case 10:
-		suma_lunara_de_plata = suma_platita / numar_rate;
-		std::cout << suma_lunara_de_plata;
-		std::cout << std::endl;
-		break;
-	case 12:
-		suma_lunara_de_plata = suma_platita / numar_rate;
-		std::cout << suma_lunara_de_plata;
-		std::cout << std::endl;
-		break;
-	default:
-		std::cout << "Operatiune invalida - Va rugam incercati din nou" << std::endl;
-		std::cout << std::endl;
-		break;
-	}
 	return 0;
 }
