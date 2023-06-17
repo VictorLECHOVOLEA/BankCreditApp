@@ -1,6 +1,22 @@
 #include <iostream>
 #include <string>
-#include <vector>
+#include <ctime>
+
+std::string getCurrentDate() {
+	std::time_t now = std::time(nullptr); // Obținem timpul curent
+	std::tm currentTime;
+	localtime_s(&currentTime, &now); // Convertim timpul într-o structură tm
+
+	int day = currentTime.tm_mday; // Ziua curentă
+	int month = currentTime.tm_mon + 1; // Luna curentă (indicele începe de la 0, așa că adăugăm 1)
+	int year = currentTime.tm_year + 1900; // Anul curent (numărul de ani de la 1900)
+
+	// Construim un șir de caractere în formatul DD/MM/YYYY
+	std::string date = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
+
+	return date;
+}
+
 
 int main() {
 	std::string nume_cont{};
@@ -20,9 +36,9 @@ int main() {
 	}
 	std::cout << std::endl;
 
-	std::string data_de_cumparare{};
+	std::string currentDate = getCurrentDate();
+	std::cout << "Data curenta este: " << currentDate << std::endl;
 	std::cout << "Va rugam sa intoduceti data la care a fost facuta achizitia: ";
-	std::cin >> data_de_cumparare;
 	std::cout << std::endl;
 
 	double suma_platita;
@@ -75,10 +91,7 @@ int main() {
 			std::cout << std::endl;
 			break;
 		}
-
 	}
 	std::cout << std::endl;
-
-	
 	return 0;
 }
