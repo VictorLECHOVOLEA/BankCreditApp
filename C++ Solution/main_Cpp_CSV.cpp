@@ -13,7 +13,7 @@ public:
     void createFile() {
         std::ofstream file(filename);
         if (file) {
-            file << "Name,Age,Hobby\n";
+            file << "Shop name,Amount,Transaction Description\n";
             file.close();
             std::cout << "CSV file created successfully.\n";
         } else {
@@ -27,11 +27,11 @@ public:
             std::string line;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string name, age, hobby;
-                if (std::getline(iss, name, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    std::cout << "Name: " << name << ", Age: " << age << ", Hobby: " << hobby << "\n";
+                std::string shop_name, amount, trans_description;
+                if (std::getline(iss, shop_name, ',') &&
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    std::cout << "Shop name: " << shop_name << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
                 }
             }
             file.close();
@@ -40,10 +40,10 @@ public:
         }
     }
 
-    void addRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+    void addRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
         std::ofstream file(filename, std::ios_base::app);
         if (file) {
-            file << name << "," << age << "," << hobby << "\n";
+            file << shop_name << "," << amount << "," << trans_description << "\n";
             file.close();
             std::cout << "Record added successfully.\n";
         } else {
@@ -51,19 +51,19 @@ public:
         }
     }
 
-    void readRecord(const std::string& name) {
+    void readRecord(const std::string& shop_name) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
             bool found = false;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, age, hobby;
+                std::string recordName, amount, trans_description;
                 if (std::getline(iss, recordName, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    if (recordName == name) {
-                        std::cout << "Name: " << recordName << ", Age: " << age << ", Hobby: " << hobby << "\n";
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    if (recordName == shop_name) {
+                        std::cout << "Shop name: " << recordName << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
                         found = true;
                         break;
                     }
@@ -78,7 +78,7 @@ public:
         }
     }
 
-    void updateRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+    void updateRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
@@ -89,9 +89,9 @@ public:
                 if (std::getline(iss, recordName, ',') &&
                     std::getline(iss, recordAge, ',') &&
                     std::getline(iss, recordHobby, ',')) {
-                    if (recordName == name) {
-                        recordAge = age;
-                        recordHobby = hobby;
+                    if (recordName == shop_name) {
+                        recordAge = amount;
+                        recordHobby = trans_description;
                     }
                     records.push_back(recordName + "," + recordAge + "," + recordHobby);
                 }
@@ -113,7 +113,7 @@ public:
         }
     }
 
-    void deleteRecord(const std::string& name) {
+    void deleteRecord(const std::string& shop_name) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
@@ -121,12 +121,12 @@ public:
             bool found = false;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, age, hobby;
+                std::string recordName, amount, trans_description;
                 if (std::getline(iss, recordName, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    if (recordName != name) {
-                        records.push_back(recordName + "," + age + "," + hobby);
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    if (recordName != shop_name) {
+                        records.push_back(recordName + "," + amount + "," + trans_description);
                     } else {
                         found = true;
                     }
@@ -180,7 +180,7 @@ int main() {
     CSVFileManager manager("data.csv");
 
     int choice;
-    std::string name, age, hobby;
+    std::string shop_name, amount, trans_description;
 
     welcome();
     while (std::cin >> choice && choice != 0) {
@@ -189,35 +189,35 @@ int main() {
                 manager.createFile();
                 break;
             case 2:
-                std::cout << "Enter name: ";
-                std::cin >> name;
-                std::cout << "Enter age: ";
-                std::cin >> age;
-                std::cout << "Enter hobby: ";
-                std::cin >> hobby;
-                manager.addRecord(name, age, hobby);
+                std::cout << "Enter shop_name: ";
+                std::cin >> shop_name;
+                std::cout << "Enter amount: ";
+                std::cin >> amount;
+                std::cout << "Enter trans_description: ";
+                std::cin >> trans_description;
+                manager.addRecord(shop_name, amount, trans_description);
                 break;
             case 3:
                 manager.readFile();
                 break;
             case 4:
-                std::cout << "Enter name to search: ";
-                std::cin >> name;
-                manager.readRecord(name);
+                std::cout << "Enter shop_name to search: ";
+                std::cin >> shop_name;
+                manager.readRecord(shop_name);
                 break;
             case 5:
-                std::cout << "Enter name to update: ";
-                std::cin >> name;
-                std::cout << "Enter new age: ";
-                std::cin >> age;
-                std::cout << "Enter new hobby: ";
-                std::cin >> hobby;
-                manager.updateRecord(name, age, hobby);
+                std::cout << "Enter shop_name to update: ";
+                std::cin >> shop_name;
+                std::cout << "Enter new amount: ";
+                std::cin >> amount;
+                std::cout << "Enter new trans_description: ";
+                std::cin >> trans_description;
+                manager.updateRecord(shop_name, amount, trans_description);
                 break;
             case 6:
-                std::cout << "Enter name to delete: ";
-                std::cin >> name;
-                manager.deleteRecord(name);
+                std::cout << "Enter shop_name to delete: ";
+                std::cin >> shop_name;
+                manager.deleteRecord(shop_name);
                 break;
             case 7:
                 manager.deleteFile();
@@ -252,7 +252,7 @@ int main() {
 //     void createFile() {
 //         std::ofstream file(filename);
 //         if (file) {
-//             file << "Name,Age,Hobby\n";
+//             file << "Shop name,Amount,Transaction Description\n";
 //             file.close();
 //             std::cout << "CSV file created successfully.\n";
 //         } else {
@@ -267,11 +267,11 @@ int main() {
 //             std::string line;
 //             while (std::getline(file, line)) {
 //                 std::istringstream iss(line);
-//                 std::string name, age, hobby;
-//                 if (std::getline(iss, name, ',') &&
-//                     std::getline(iss, age, ',') &&
-//                     std::getline(iss, hobby, ',')) {
-//                     std::cout << "Name: " << name << ", Age: " << age << ", Hobby: " << hobby << "\n";
+//                 std::string shop_name, amount, trans_description;
+//                 if (std::getline(iss, shop_name, ',') &&
+//                     std::getline(iss, amount, ',') &&
+//                     std::getline(iss, trans_description, ',')) {
+//                     std::cout << "Shop name: " << shop_name << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
 //                 }
 //             }
 //             file.close();
@@ -280,10 +280,10 @@ int main() {
 //         }
 //     }
 
-//     void addRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+//     void addRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
 //         std::ofstream file(filename, std::ios_base::app);
 //         if (file) {
-//             file << name << "," << age << "," << hobby << "\n";
+//             file << shop_name << "," << amount << "," << trans_description << "\n";
 //             file.close();
 //             std::cout << "Record added successfully.\n";
 //         } else {
@@ -291,7 +291,7 @@ int main() {
 //         }
 //     }
 
-//     void readRecord(const std::string& name) {
+//     void readRecord(const std::string& shop_name) {
 //         std::cout << "  Reading a record:\n";
 //         std::ifstream file(filename);
 //         if (file) {
@@ -299,12 +299,12 @@ int main() {
 //             bool found = false;
 //             while (std::getline(file, line)) {
 //                 std::istringstream iss(line);
-//                 std::string recordName, age, hobby;
+//                 std::string recordName, amount, trans_description;
 //                 if (std::getline(iss, recordName, ',') &&
-//                     std::getline(iss, age, ',') &&
-//                     std::getline(iss, hobby, ',')) {
-//                     if (recordName == name) {
-//                         std::cout << "Name: " << recordName << ", Age: " << age << ", Hobby: " << hobby << "\n";
+//                     std::getline(iss, amount, ',') &&
+//                     std::getline(iss, trans_description, ',')) {
+//                     if (recordName == shop_name) {
+//                         std::cout << "Shop name: " << recordName << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
 //                         found = true;
 //                         break;
 //                     }
@@ -319,7 +319,7 @@ int main() {
 //         }
 //     }
 
-//     void updateRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+//     void updateRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
 //         std::cout << "  Updating a record:\n";
 //         std::ifstream file(filename);
 //         if (file) {
@@ -331,9 +331,9 @@ int main() {
 //                 if (std::getline(iss, recordName, ',') &&
 //                     std::getline(iss, recordAge, ',') &&
 //                     std::getline(iss, recordHobby, ',')) {
-//                     if (recordName == name) {
-//                         recordAge = age;
-//                         recordHobby = hobby;
+//                     if (recordName == shop_name) {
+//                         recordAge = amount;
+//                         recordHobby = trans_description;
 //                     }
 //                     records.push_back(recordName + "," + recordAge + "," + recordHobby);
 //                 }
@@ -355,7 +355,7 @@ int main() {
 //         }
 //     }
 
-//     void deleteRecord(const std::string& name) {
+//     void deleteRecord(const std::string& shop_name) {
 //         std::cout << "  Deleting a record:\n";
 //         std::ifstream file(filename);
 //         if (file) {
@@ -364,12 +364,12 @@ int main() {
 //             bool found = false;
 //             while (std::getline(file, line)) {
 //                 std::istringstream iss(line);
-//                 std::string recordName, age, hobby;
+//                 std::string recordName, amount, trans_description;
 //                 if (std::getline(iss, recordName, ',') &&
-//                     std::getline(iss, age, ',') &&
-//                     std::getline(iss, hobby, ',')) {
-//                     if (recordName != name) {
-//                         records.push_back(recordName + "," + age + "," + hobby);
+//                     std::getline(iss, amount, ',') &&
+//                     std::getline(iss, trans_description, ',')) {
+//                     if (recordName != shop_name) {
+//                         records.push_back(recordName + "," + amount + "," + trans_description);
 //                     } else {
 //                         found = true;
 //                     }
@@ -434,7 +434,7 @@ int main() {
 
 
 /*
-Help me build a c++ class that would have multiple functions. these functions should create or read CSV file and write or read some data like name, age, hoby.  Then a function to Read a particular record, then another one to Update a record and finally, one to delete a recortd.
+Help me build a c++ class that would have multiple functions. these functions should create or read CSV file and write or read some data like shop_name, amount, hoby.  Then a function to Read a particular record, then another one to Update a record and finally, one to delete a recortd.
 Certainly! I can help you with that. Here's an example of a C++ class that can handle creating, reading, writing, updating, and deleting records in a CSV file:
 
 #include <iostream>
@@ -452,7 +452,7 @@ public:
     void createFile() {
         std::ofstream file(filename);
         if (file) {
-            file << "Name,Age,Hobby\n";
+            file << "Shop name,Amount,Transaction Description\n";
             file.close();
             std::cout << "CSV file created successfully.\n";
         } else {
@@ -466,11 +466,11 @@ public:
             std::string line;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string name, age, hobby;
-                if (std::getline(iss, name, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    std::cout << "Name: " << name << ", Age: " << age << ", Hobby: " << hobby << "\n";
+                std::string shop_name, amount, trans_description;
+                if (std::getline(iss, shop_name, ',') &&
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    std::cout << "Shop name: " << shop_name << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
                 }
             }
             file.close();
@@ -479,10 +479,10 @@ public:
         }
     }
 
-    void addRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+    void addRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
         std::ofstream file(filename, std::ios_base::app);
         if (file) {
-            file << name << "," << age << "," << hobby << "\n";
+            file << shop_name << "," << amount << "," << trans_description << "\n";
             file.close();
             std::cout << "Record added successfully.\n";
         } else {
@@ -490,19 +490,19 @@ public:
         }
     }
 
-    void readRecord(const std::string& name) {
+    void readRecord(const std::string& shop_name) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
             bool found = false;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, age, hobby;
+                std::string recordName, amount, trans_description;
                 if (std::getline(iss, recordName, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    if (recordName == name) {
-                        std::cout << "Name: " << recordName << ", Age: " << age << ", Hobby: " << hobby << "\n";
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    if (recordName == shop_name) {
+                        std::cout << "Shop name: " << recordName << ", Amount: " << amount << ", Transaction Description: " << trans_description << "\n";
                         found = true;
                         break;
                     }
@@ -517,7 +517,7 @@ public:
         }
     }
 
-    void updateRecord(const std::string& name, const std::string& age, const std::string& hobby) {
+    void updateRecord(const std::string& shop_name, const std::string& amount, const std::string& trans_description) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
@@ -528,9 +528,9 @@ public:
                 if (std::getline(iss, recordName, ',') &&
                     std::getline(iss, recordAge, ',') &&
                     std::getline(iss, recordHobby, ',')) {
-                    if (recordName == name) {
-                        recordAge = age;
-                        recordHobby = hobby;
+                    if (recordName == shop_name) {
+                        recordAge = amount;
+                        recordHobby = trans_description;
                     }
                     records.push_back(recordName + "," + recordAge + "," + recordHobby);
                 }
@@ -552,7 +552,7 @@ public:
         }
     }
 
-    void deleteRecord(const std::string& name) {
+    void deleteRecord(const std::string& shop_name) {
         std::ifstream file(filename);
         if (file) {
             std::string line;
@@ -560,12 +560,12 @@ public:
             bool found = false;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, age, hobby;
+                std::string recordName, amount, trans_description;
                 if (std::getline(iss, recordName, ',') &&
-                    std::getline(iss, age, ',') &&
-                    std::getline(iss, hobby, ',')) {
-                    if (recordName != name) {
-                        records.push_back(recordName + "," + age + "," + hobby);
+                    std::getline(iss, amount, ',') &&
+                    std::getline(iss, trans_description, ',')) {
+                    if (recordName != shop_name) {
+                        records.push_back(recordName + "," + amount + "," + trans_description);
                     } else {
                         found = true;
                     }
@@ -657,12 +657,12 @@ https://www.geeksforgeeks.org/csv-file-management-using-c/
 /*
 BUGS
 
-Enter name to search: dedeman
+Enter shop_name to search: dedeman
 Record not found.
 
-Enter name: Emag
-Enter age: 200
-Enter hobby: masina de spalat
+Enter shop_name: Emag
+Enter amount: 200
+Enter trans_description: masina de spalat
 
 Emag,200,masina
 
