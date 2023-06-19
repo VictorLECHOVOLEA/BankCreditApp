@@ -21,7 +21,7 @@ int main() {
     std::string currentDate = produse.getCurrentDate();
     std::cout << std::endl;
 
-    double suma_lunara = produse.calculSumaLunaraPlata();
+    produse.calculSumaLunaraPlata();
 	return 0;
 }
 
