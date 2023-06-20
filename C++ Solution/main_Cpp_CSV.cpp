@@ -85,15 +85,15 @@ public:
             std::vector<std::string> records;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, recordAge, recordHobby;
+                std::string recordName, recordAge, recordTransaction;
                 if (std::getline(iss, recordName, ',') &&
                     std::getline(iss, recordAge, ',') &&
-                    std::getline(iss, recordHobby, ',')) {
+                    std::getline(iss, recordTransaction, ',')) {
                     if (recordName == shop_name) {
                         recordAge = amount;
-                        recordHobby = trans_description;
+                        recordTransaction = trans_description;
                     }
-                    records.push_back(recordName + "," + recordAge + "," + recordHobby);
+                    records.push_back(recordName + "," + recordAge + "," + recordTransaction);
                 }
             }
             file.close();
@@ -327,15 +327,15 @@ int main() {
 //             std::vector<std::string> records;
 //             while (std::getline(file, line)) {
 //                 std::istringstream iss(line);
-//                 std::string recordName, recordAge, recordHobby;
+//                 std::string recordName, recordAge, recordTransaction;
 //                 if (std::getline(iss, recordName, ',') &&
 //                     std::getline(iss, recordAge, ',') &&
-//                     std::getline(iss, recordHobby, ',')) {
+//                     std::getline(iss, recordTransaction, ',')) {
 //                     if (recordName == shop_name) {
 //                         recordAge = amount;
-//                         recordHobby = trans_description;
+//                         recordTransaction = trans_description;
 //                     }
-//                     records.push_back(recordName + "," + recordAge + "," + recordHobby);
+//                     records.push_back(recordName + "," + recordAge + "," + recordTransaction);
 //                 }
 //             }
 //             file.close();
@@ -524,15 +524,15 @@ public:
             std::vector<std::string> records;
             while (std::getline(file, line)) {
                 std::istringstream iss(line);
-                std::string recordName, recordAge, recordHobby;
+                std::string recordName, recordAge, recordTransaction;
                 if (std::getline(iss, recordName, ',') &&
                     std::getline(iss, recordAge, ',') &&
-                    std::getline(iss, recordHobby, ',')) {
+                    std::getline(iss, recordTransaction, ',')) {
                     if (recordName == shop_name) {
                         recordAge = amount;
-                        recordHobby = trans_description;
+                        recordTransaction = trans_description;
                     }
-                    records.push_back(recordName + "," + recordAge + "," + recordHobby);
+                    records.push_back(recordName + "," + recordAge + "," + recordTransaction);
                 }
             }
             file.close();
